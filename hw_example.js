@@ -8,6 +8,10 @@ import {abProblem,
   smilesProblem,
   ticTacToeProblem} from '../csc_frontend/hw1.js'
 
-// console.log(abProblem(4,5));
+console.log(ticTacToeProblem([
+  ['x', 'x', 'o'],
+  ['o', 'o', 'x'],
+  ['x', 'x', 'o']
+]));
 
-console.log(numberSystemProblem('ee', 36));
+//console.log(centuryByYearProblem(-3));

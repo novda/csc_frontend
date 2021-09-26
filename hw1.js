@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
     }else if (year < 0){
       throw new RangeError();
     }
-    return Math.ceil((year+1)/100);
+    return Math.ceil((year/100));
 }
 
 /**
@@ -54,15 +54,18 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number'){
-      throw new TypeError;
+      throw new TypeError();
     } else if (n < 0 || !Number.isInteger(n)){
-      throw new RangeError;
+      throw new RangeError();
     }
-    if (n <= 1){
-      return n;
-    }else {
-      return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    let acc1 = 1;
+    let acc2 = 1;
+    for (let i = 3; i <= n; i += 1){
+      let acc3 = acc1 + acc2;
+      acc1 = acc2;
+      acc2 = acc3;
     }
+    return acc2;
 }
 
 /**
@@ -73,7 +76,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
   if (!Array.isArray(matrix) || !Array.isArray(matrix[0])){
-    throw new TypeError;
+    throw new TypeError();
   };
   const result = [];
   const matrixLength = matrix.length;
@@ -98,9 +101,9 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number'){
-      throw new TypeError;
+      throw new TypeError();
     }else if (targetNs < 2 || targetNs > 36){
-      throw new RangeError;
+      throw new RangeError();
     };
     return n.toString(targetNs);
 }
@@ -112,7 +115,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string'){
+      throw new TypeError();
+    };
+    if(phoneNumber.match(/^\d\-\d{3}\-\d{3}\-\d\d-\d\d$/) !== null){
+      return true;
+    }
+    return false;
 }
 
 /**
@@ -122,7 +131,14 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string'){
+      throw new TypeError();
+    };
+    const result = text.match(/\:\-\)|\(\-\:/g)
+    if (result === null){
+      return 0;
+    }
+    return result.length;
 }
 
 /**
@@ -132,7 +148,34 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const flatArray = field.flat();
+    const arrayX = [];
+    const arrayO = [];
+    for(let i = 0; i < flatArray.length; i += 1){
+      if(flatArray[i] === 'x'){
+        arrayX.push(i);
+      }else{
+        arrayO.push(i)
+      }
+    };
+    let winComb = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    for(let i of winComb){
+      let winX = 0
+      let winO = 0
+      for(let a of i){
+        if(arrayX.includes(a)){
+          winX += 1
+        }else if (arrayO.includes(a)){
+          winO += 1
+        }
+      }
+      if(winX === 3){
+        return 'x';
+      }else if (winO === 3){
+        return 'o';
+      }
+    }
+    return 'draw'; 
 }
 
 export { abProblem,
