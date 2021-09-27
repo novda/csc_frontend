@@ -1,0 +1,14 @@
+19
+20
+32
+--
+
+abProblem 1-7
+centuryByYearProblem 8-14
+colorsProblem 15-21
+fibonacciProblem 22-32
+matrixProblem 33-38
+numberSystemProblem,
+phoneProblem,
+smilesProblem,
+ticTacToeProblem

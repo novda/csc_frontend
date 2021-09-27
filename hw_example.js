@@ -8,10 +8,10 @@ import {abProblem,
   smilesProblem,
   ticTacToeProblem} from '../csc_frontend/hw1.js'
 
-console.log(ticTacToeProblem([
-  ['x', 'x', 'o'],
-  ['o', 'o', 'x'],
-  ['x', 'x', 'o']
-]));
+// console.log(ticTacToeProblem([
+//   ['x', 'x', 'o'],
+//   ['o', 'o', 'x'],
+//   ['x', 'x', 'o']
+// ]));
 
-//console.log(centuryByYearProblem(-3));
+console.log(colorsProblem('Erer'))

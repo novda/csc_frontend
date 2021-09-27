@@ -41,8 +41,16 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string'){
       throw new TypeError();
     };
+    let hexReg = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hexColor = hexColor.replace(hexReg, function(m, r, g, b) {
+      return r + r + g + g + b + b;
+    });
     let splitHex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-    return splitHex ? `(${parseInt(splitHex[1], 16)}, ${parseInt(splitHex[2], 16)}, ${parseInt(splitHex[3], 16)})` : new RangeError();
+    if (splitHex){
+      return `(${parseInt(splitHex[1], 16)}, ${parseInt(splitHex[2], 16)}, ${parseInt(splitHex[3], 16)})`
+    }else{
+      throw new RangeError;
+    }
 }
 
 /**
@@ -55,7 +63,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof n !== 'number'){
       throw new TypeError();
-    } else if (n < 0 || !Number.isInteger(n)){
+    } else if (n <= 0 || !Number.isInteger(n)){
       throw new RangeError();
     }
     let acc1 = 1;
@@ -104,7 +112,7 @@ function numberSystemProblem(n, targetNs) {
       throw new TypeError();
     }else if (targetNs < 2 || targetNs > 36){
       throw new RangeError();
-    };
+      };
     return n.toString(targetNs);
 }
 
@@ -118,7 +126,7 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string'){
       throw new TypeError();
     };
-    if(phoneNumber.match(/^\d\-\d{3}\-\d{3}\-\d\d-\d\d$/) !== null){
+    if(phoneNumber.match(/^8\-800\-\d{3}\-\d\d\-\d\d$/) !== null){
       return true;
     }
     return false;
@@ -176,7 +184,7 @@ function ticTacToeProblem(field) {
       }
     }
     return 'draw'; 
-}
+};
 
 export { abProblem,
   centuryByYearProblem,
